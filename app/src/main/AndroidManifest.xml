@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:name=".application.MainApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".flow.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

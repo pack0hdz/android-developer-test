@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/launcher_fragment">
+    app:startDestination="@id/operation_selection_fragment">
 
     <fragment
-        android:id="@+id/launcher_fragment"
-        android:name="com.exam.hugoapptest.flow.home.fragments.HomeLauncherFragment"
+        android:id="@+id/operation_selection_fragment"
+        android:name="com.exam.hugoapptest.flow.home.fragments.OperationSelectionFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_launcher" />
+        tools:layout="@layout/fragment_operation_selection" />
 
 </navigation>

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HugoAppTest</string>
+
+    <string name="fragment_home_register_new_access">Registrar entrada</string>
+    <string name="fragment_home_register_exit">Registrar salida</string>
+    <string name="fragment_home_register_new_car_register">Dar de alta vehículo</string>
+    <string name="fragment_home_start_month">Comenzar mes</string>
+    <string name="fragment_home_resident_payment">Pago de residentes</string>
+
 </resources>
