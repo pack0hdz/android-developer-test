@@ -1,6 +1,7 @@
 package com.exam.hugoapptest.di.component
 
 import com.exam.hugoapptest.application.InjectableApplication
+import com.exam.hugoapptest.di.modules.ExamenActivityModule
 import com.exam.hugoapptest.di.modules.ExamenAppModule
 import com.exam.hugoapptest.di.modules.ExamenModule
 import dagger.BindsInstance
@@ -11,6 +12,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        ExamenActivityModule::class,
         ExamenAppModule::class,
         ExamenModule::class,
         AndroidSupportInjectionModule::class
