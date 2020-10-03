@@ -31,7 +31,6 @@ class OperationSelectionFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return binding.root
     }
 

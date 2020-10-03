@@ -8,7 +8,18 @@
     <fragment
         android:id="@+id/operation_selection_fragment"
         android:name="com.exam.hugoapptest.flow.home.fragments.OperationSelectionFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_operation_selection" />
+        android:label="OperationSelectionFragment"
+        tools:layout="@layout/fragment_operation_selection" >
+
+        <action
+            android:id="@+id/actionTo_new_car_fragment"
+            app:destination="@id/register_new_car_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/register_new_car_fragment"
+        android:name="com.exam.hugoapptest.flow.home.fragments.RegisterNewCarFragment"
+        android:label="RegisterNewCarFragment"
+        tools:layout="@layout/fragment_new_car_register"/>
 
 </navigation>

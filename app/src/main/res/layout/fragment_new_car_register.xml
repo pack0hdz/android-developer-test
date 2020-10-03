@@ -7,12 +7,12 @@
 
         <variable
             name="viewModel"
-            type="com.exam.hugoapptest.flow.home.viewModel.RegisterViewModel" />
+            type="com.exam.hugoapptest.flow.home.viewModel.NewCarRegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView_title_register"
@@ -21,7 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text="@string/fragment_sheet_register_access_title"
+            android:text="@string/fragment_new_car_register_title"
             android:textColor="@android:color/black"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -46,45 +46,57 @@
             style="@style/Base_Button"
             android:layout_width="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/fragment_sheet_register_access_button"
+            android:enabled="@{ viewModel.isButtonRegisterEnable }"
+            android:onClick="@{ () -> viewModel.saveNewCarRegister() }"
+            android:text="@string/fragment_new_car_register_button"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_time_access"
             tools:enabled="false" />
 
-        <EditText
-            android:id="@+id/editText_number"
+        <Spinner
+            android:id="@+id/spinner_car_type"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:hint="@string/fragment_sheet_register_access_number"
-            android:inputType="text"
-            android:textSize="18sp"
+            android:entries="@array/list_car_type"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_divider" />
 
-        <TextView
-            android:id="@+id/textView_time_access"
+        <EditText
+            android:id="@+id/editText_number"
             android:layout_width="0dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/fragment_sheet_register_access_time"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/fragment_sheet_register_access_number"
+            android:inputType="textAutoComplete"
+            android:text="@={ viewModel.carRegistrationNumber }"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_car_type"
+            app:layout_constraintStart_toStartOf="@+id/spinner_car_type"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_car_type"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/editText_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center|left"
+            android:hint="@string/fragment_new_car_register_description"
+            android:maxLines="3"
+            android:text="@={ viewModel.carDescription }"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/editText_number"
             app:layout_constraintStart_toStartOf="@+id/editText_number"
-            app:layout_constraintTop_toBottomOf="@+id/editText_number"
-            tools:text="Fecha y Hora de ingreso \n Sábado 3 Oct - 13:00"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/editText_number" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

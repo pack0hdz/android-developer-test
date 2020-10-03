@@ -13,4 +13,25 @@
     <string name="fragment_sheet_register_access_time">Fecha y hora de ingreso</string>
     <string name="fragment_sheet_register_access_button">Aceptar</string>
 
+    <!-- Register Exit -->
+    <string name="fragment_sheet_register_exit_title">Registrar salida</string>
+    <string name="fragment_sheet_register_exit_time">Fecha y hora de salida</string>
+
+    <!-- New Car Register -->
+    <string name="fragment_new_car_register_title">Registrar nuevo vehículo</string>
+    <string name="fragment_new_car_register_number">Número de placa</string>
+    <string name="fragment_new_car_register_time">Fecha y hora de ingreso</string>
+    <string name="fragment_new_car_register_button">Guardar</string>
+    <string name="fragment_new_car_register_description">Agregar breve descripción (Opcional)</string>
+    <string name="fragment_new_car_register_tools_description">Short description \n Short description \nShort description \nShort Description</string>
+
+    <!-- Car type selection -->
+    <string name="option_car_type_oficial">Vehículo oficial</string>
+    <string name="option_car_type_resident">Vehículo residente</string>
+
+    <string-array name="list_car_type">
+        <item>@string/option_car_type_oficial</item>
+        <item>@string/option_car_type_resident</item>
+    </string-array>
+
 </resources>
