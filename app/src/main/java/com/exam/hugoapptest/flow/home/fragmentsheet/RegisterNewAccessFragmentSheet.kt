@@ -57,10 +57,11 @@ class RegisterNewAccessFragmentSheet : BaseBottomSheet() {
 
     private fun bindViewModel() {
         viewModel.getShowMessageText().observe(viewLifecycleOwner, Observer {
+            this.dismiss()
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         viewModel.getTotalPrices().observe(viewLifecycleOwner, Observer {totalPrice ->
-            binding.textViewTimeAccess.text = "${registerConfig?.registerTime} \n $$totalPrice"
+            binding.textViewTimeAccess.text = "${registerConfig?.registerTime} \n $${totalPrice.first}, ${totalPrice.second}"
         })
     }
 

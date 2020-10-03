@@ -39,7 +39,7 @@ open  class BaseRegisterViewModel : BaseViewModel() {
         if (currentList?.isNotEmpty()!!) {
             currentListJson = Gson().fromJson(currentList, ListCarAccessRegister::class.java) as ListCarAccessRegister
             currentListJson.listCar.add(itemCar)
-            PrefsManager.instance[PrefsManager.LIST_CAR_ACCESS] = currentList
+            PrefsManager.instance[PrefsManager.LIST_CAR_ACCESS] = Gson().toJson(currentListJson)
         } else {
             val listCar = ListCarAccessRegister(
                 listCar = mutableListOf(
@@ -60,9 +60,14 @@ open  class BaseRegisterViewModel : BaseViewModel() {
         } else {
             currentListJson = Gson().fromJson(currentList, ListCarModel::class.java) as ListCarModel
 
-            val currentItem = currentListJson.listCar.first { it.carRegistrationNumber == registrationNumber }
+            val anyItemCarModel = currentListJson.listCar.any { it.carRegistrationNumber == registrationNumber }
+            var currentItem = CarModel()
 
-            return Pair(currentListJson.listCar.any { it.carRegistrationNumber == registrationNumber }, currentItem)
+            if (anyItemCarModel) {
+                currentItem = currentListJson.listCar.first { it.carRegistrationNumber == registrationNumber }
+            }
+
+            return Pair(anyItemCarModel, currentItem)
         }
     }
 
@@ -80,9 +85,27 @@ open  class BaseRegisterViewModel : BaseViewModel() {
 
             if (anyItemCarModel) {
                 currentItem = currentListJson.listCar.first { it.carModel?.carRegistrationNumber == registrationNumber }
+                updateList(currentListJson.listCar.filter { it != currentItem })
             }
 
             return Pair(anyItemCarModel, currentItem)
+        }
+    }
+
+    private fun updateList(currentList: List<NewAccessCar>) {
+        var currentListJson: ListCarAccessRegister? = null
+
+        if (currentList.isNotEmpty()) {
+
+            currentList.forEach {
+                currentListJson = ListCarAccessRegister(
+                    mutableListOf(it)
+                )
+            }
+
+            PrefsManager.instance[PrefsManager.LIST_CAR_ACCESS] = Gson().toJson(currentListJson)
+        } else {
+            PrefsManager.instance[PrefsManager.LIST_CAR_ACCESS] =  ""
         }
     }
 

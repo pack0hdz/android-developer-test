@@ -14,13 +14,13 @@ class RegisterViewModel @Inject constructor(
 ) : BaseRegisterViewModel()  {
 
     val carRegistrationNumber = MutableLiveData<String>()
-    private val showTotalPrice = MutableLiveData<String>()
+    private val showTotalPrice = MutableLiveData<Pair<String, String>>()
 
     var isButtonRegisterEnable = MediatorLiveData<Boolean>().apply {
         addSource(carRegistrationNumber) { value = validateCompleteData() }
     }
 
-    fun getTotalPrices(): LiveData<String> = showTotalPrice
+    fun getTotalPrices(): LiveData<Pair<String, String>> = showTotalPrice
 
     private fun validateCompleteData() : Boolean {
         return carRegistrationNumber.value.isNotNullOrBlank()
@@ -63,7 +63,7 @@ class RegisterViewModel @Inject constructor(
             totalMinutes = getDifferenceBetwenDates(newRegister.carAccessTime!!, newRegister.carExitCar!!)
             totalPriceToPay = getTotalPayment(newRegister.carModel?.carType, totalMinutes)
             newRegister.carTotalPayment = totalPriceToPay
-            showTotalPrice.value = "$totalPriceToPay"
+            showTotalPrice.value = Pair("$totalPriceToPay", "Total Minutos: $totalMinutes")
         } else {
             showMessageText.value = "Verificar placa del vehículo"
         }

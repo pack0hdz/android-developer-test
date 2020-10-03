@@ -57,8 +57,8 @@ class PrefsManager private constructor(private val context: Context) {
                     PrefsManager(context)
         }
 
-        var LIST_CAR_REGISTERED = PreferencesKey("registered_car_list", "")
-        var LIST_CAR_ACCESS = PreferencesKey("registered_car_access", "")
+        var LIST_CAR_REGISTERED = PreferencesKey("registered_car_list", "") //new car into list
+        var LIST_CAR_ACCESS = PreferencesKey("registered_car_access", "") //new access car
     }
 
 }
