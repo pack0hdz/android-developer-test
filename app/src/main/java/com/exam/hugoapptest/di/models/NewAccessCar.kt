@@ -5,9 +5,10 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 data class NewAccessCar(
-    val carModel: CarModel,
-    val carAccessTime: String,
-    val carExitCar: String
+    val carModel: CarModel? = null,
+    val carAccessTime: Long? = null,
+    var carExitCar: Long? = null,
+    var carTotalPayment: Double? = null
 )
 
 @Parcelize

@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.exam.hugoapptest.base.BaseBottomSheet
 import com.exam.hugoapptest.databinding.FragmentSheetRegisterNewAccesBinding
+import com.exam.hugoapptest.extensions.show
 import com.exam.hugoapptest.flow.home.config.RegisterConfig
+import com.exam.hugoapptest.flow.home.config.RegisterOperation
 import com.exam.hugoapptest.flow.home.viewModel.RegisterViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -57,18 +59,22 @@ class RegisterNewAccessFragmentSheet : BaseBottomSheet() {
         viewModel.getShowMessageText().observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
+        viewModel.getTotalPrices().observe(viewLifecycleOwner, Observer {totalPrice ->
+            binding.textViewTimeAccess.text = "${registerConfig?.registerTime} \n $$totalPrice"
+        })
     }
 
     private fun setStrings() {
         binding.apply {
             textViewTitleRegister.text = registerConfig?.registerTitle
             textViewTimeAccess.text = registerConfig?.registerTime
+            textViewTimeAccess.show(registerConfig?.registerOperation == RegisterOperation.EXIT)
         }
     }
 
     private fun initListener() {
         binding.buttonRegister.setOnClickListener {
-
+            viewModel.doAction(registerConfig?.registerOperation)
         }
     }
 

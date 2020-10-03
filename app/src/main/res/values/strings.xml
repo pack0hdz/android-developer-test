@@ -15,7 +15,7 @@
 
     <!-- Register Exit -->
     <string name="fragment_sheet_register_exit_title">Registrar salida</string>
-    <string name="fragment_sheet_register_exit_time">Fecha y hora de salida</string>
+    <string name="fragment_sheet_register_exit_time">Total a pagar: </string>
 
     <!-- New Car Register -->
     <string name="fragment_new_car_register_title">Registrar nuevo vehículo</string>

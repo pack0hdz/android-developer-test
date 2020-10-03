@@ -2,11 +2,13 @@ package com.exam.hugoapptest.flow.home.viewModel
 
 import com.exam.hugoapptest.base.BaseViewModel
 import com.exam.hugoapptest.di.models.CarModel
+import com.exam.hugoapptest.di.models.CarType
 import com.exam.hugoapptest.di.models.ListCarAccessRegister
 import com.exam.hugoapptest.di.models.ListCarModel
 import com.exam.hugoapptest.di.models.NewAccessCar
 import com.exam.hugoapptest.preference.PrefsManager
 import com.google.gson.Gson
+import java.util.function.DoubleBinaryOperator
 
 open  class BaseRegisterViewModel : BaseViewModel() {
 
@@ -49,10 +51,48 @@ open  class BaseRegisterViewModel : BaseViewModel() {
         }
     }
 
-    fun registerExitCar() {
+    fun isCarRegistered(registrationNumber: String): Pair<Boolean, CarModel> {
+        val currentList = PrefsManager.instance.getString(PrefsManager.LIST_CAR_REGISTERED, "")
+        var currentListJson: ListCarModel? = null
 
+        return if (currentList.isNullOrEmpty()) {
+            Pair(false, CarModel())
+        } else {
+            currentListJson = Gson().fromJson(currentList, ListCarModel::class.java) as ListCarModel
+
+            val currentItem = currentListJson.listCar.first { it.carRegistrationNumber == registrationNumber }
+
+            return Pair(currentListJson.listCar.any { it.carRegistrationNumber == registrationNumber }, currentItem)
+        }
     }
-    
+
+    fun isCarAccessRegistered(registrationNumber: String): Pair<Boolean, NewAccessCar> {
+        val currentList = PrefsManager.instance.getString(PrefsManager.LIST_CAR_ACCESS, "")
+        var currentListJson: ListCarAccessRegister? = null
+
+        return if (currentList.isNullOrEmpty()) {
+            Pair(false, NewAccessCar())
+        } else {
+            currentListJson = Gson().fromJson(currentList, ListCarAccessRegister::class.java) as ListCarAccessRegister
+
+            val anyItemCarModel = currentListJson.listCar.any { it.carModel?.carRegistrationNumber == registrationNumber }
+            var currentItem = NewAccessCar()
+
+            if (anyItemCarModel) {
+                currentItem = currentListJson.listCar.first { it.carModel?.carRegistrationNumber == registrationNumber }
+            }
+
+            return Pair(anyItemCarModel, currentItem)
+        }
+    }
+
+    fun getTotalPayment(carType: CarType?, totalMinutes: Int): Double {
+        return when(carType) {
+            CarType.CAR_NO_RESIDENT -> totalMinutes * PAYMENT_AMOUNT_EXTERNO
+            CarType.CAR_RESIDENT -> totalMinutes * PAYMENT_AMOUNT_RESIDENT
+            else -> 0.toDouble()
+        }
+    }
 
     private companion object {
         const val PAYMENT_AMOUNT_RESIDENT = 0.05
