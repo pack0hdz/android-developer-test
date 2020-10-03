@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white_alpha">#BBFFFFFF</color>
+
+    <color name="base_button_disabled">#bdbdbd</color>
+    <color name="base_empty_view_divisor">#e5e5e4</color>
 </resources>

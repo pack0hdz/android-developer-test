@@ -42,11 +42,11 @@ class OperationSelectionFragment: BaseFragment() {
 
     private fun initListener() {
         binding.apply {
-            cardViewRegisterNewAccess.setOnClickListener {  }
-            cardViewRegisterExit.setOnClickListener {  }
-            cardViewCarRegister.setOnClickListener {  }
-            cardViewStartMonth.setOnClickListener {  }
-            cardViewResidentPayment.setOnClickListener {  }
+            textViewRegisterNewAccess.setOnClickListener { listener?.onRegisterNewAccess() }
+            textViewRegisterExit.setOnClickListener { listener?.onRegisterExist() }
+            textViewCarRegister.setOnClickListener { listener?.onRegisterNewCar() }
+            textViewStartMonth.setOnClickListener { listener?.onStartMonth() }
+            textViewResidentPayment.setOnClickListener { listener?.onPaymentResident() }
         }
     }
 
