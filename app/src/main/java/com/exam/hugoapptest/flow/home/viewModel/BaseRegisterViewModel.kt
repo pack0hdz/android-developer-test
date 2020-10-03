@@ -12,6 +12,26 @@ import java.util.function.DoubleBinaryOperator
 
 open  class BaseRegisterViewModel : BaseViewModel() {
 
+    fun registerHistoric(itemCar: NewAccessCar) {
+
+        val currentList = PrefsManager.instance.getString(PrefsManager.LIST_HISTORIC_ACCESS, "")
+        var currentListJson: ListCarAccessRegister? = null
+
+        if (currentList?.isNotEmpty()!!) {
+            currentListJson = Gson().fromJson(currentList, ListCarAccessRegister::class.java) as ListCarAccessRegister
+            currentListJson.listCar.add(itemCar)
+            PrefsManager.instance[PrefsManager.LIST_HISTORIC_ACCESS] = Gson().toJson(currentListJson)
+        } else {
+            val listCar = ListCarAccessRegister(
+                listCar = mutableListOf(
+                    itemCar
+                )
+            )
+            val _listCar = Gson().toJson(listCar)
+            PrefsManager.instance[PrefsManager.LIST_HISTORIC_ACCESS] = _listCar
+        }
+    }
+
     fun registerNewCar(itemCar: CarModel) {
 
         val currentList = PrefsManager.instance.getString(PrefsManager.LIST_CAR_REGISTERED, "")

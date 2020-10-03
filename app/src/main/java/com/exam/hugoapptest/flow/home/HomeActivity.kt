@@ -12,6 +12,7 @@ import com.exam.hugoapptest.flow.home.fragments.OperationSelectionFragment
 import com.exam.hugoapptest.flow.home.fragments.OperationSelectionFragmentDirections
 import com.exam.hugoapptest.flow.home.fragments.RegisterNewCarFragment
 import com.exam.hugoapptest.flow.home.fragmentsheet.RegisterNewAccessFragmentSheet
+import com.exam.hugoapptest.preference.PrefsManager
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -62,7 +63,8 @@ class HomeActivity : BaseActivity(),
     }
 
     override fun onStartMonth() {
-        TODO("Not yet implemented")
+        PrefsManager.instance.resetPreferences()
+        showMessage("Datos eliminados correctamente")
     }
 
     override fun onPaymentResident() {

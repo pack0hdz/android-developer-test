@@ -64,6 +64,8 @@ class RegisterViewModel @Inject constructor(
             totalPriceToPay = getTotalPayment(newRegister.carModel?.carType, totalMinutes)
             newRegister.carTotalPayment = totalPriceToPay
             showTotalPrice.value = Pair("$totalPriceToPay", "Total Minutos: $totalMinutes")
+
+            registerHistoric(newRegister)
         } else {
             showMessageText.value = "Verificar placa del vehículo"
         }
