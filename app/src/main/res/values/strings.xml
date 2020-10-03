@@ -28,10 +28,12 @@
     <!-- Car type selection -->
     <string name="option_car_type_oficial">Vehículo oficial</string>
     <string name="option_car_type_resident">Vehículo residente</string>
+    <string name="option_car_type_not_resident">Vehículo NO residente</string>
 
     <string-array name="list_car_type">
         <item>@string/option_car_type_oficial</item>
         <item>@string/option_car_type_resident</item>
+        <item>@string/option_car_type_not_resident</item>
     </string-array>
 
 </resources>

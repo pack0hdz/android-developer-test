@@ -11,7 +11,7 @@ import com.exam.hugoapptest.extensions.default
 import com.exam.hugoapptest.extensions.isNotNullOrBlank
 import javax.inject.Inject
 
-class NewCarRegisterViewModel @Inject constructor(
+class RegisterNewCarViewModel @Inject constructor(
 
 ) : BaseRegisterViewModel() {
 
@@ -41,8 +41,10 @@ class NewCarRegisterViewModel @Inject constructor(
             val itemSelected = parent.adapter.getItem(position) as String
             carType.value = if (itemSelected.equals(view.context.getString(R.string.option_car_type_oficial))) {
                 CarType.CAR_OFICIAL
-            } else {
+            } else if (itemSelected.equals(view.context.getString(R.string.option_car_type_resident))) {
                 CarType.CAR_RESIDENT
+            } else {
+                CarType.CAR_NO_RESIDENT
             }
         }
     }
@@ -57,6 +59,16 @@ class NewCarRegisterViewModel @Inject constructor(
             _numberRegister,
             _description
         )
+
+        registerNewCar(newCarRegister)
+        clearValues()
+
+        showMessageText.value = "Guardado exitosamente"
+    }
+
+    private fun clearValues() {
+        carDescription.value = ""
+        carRegistrationNumber.value = ""
     }
 
 }

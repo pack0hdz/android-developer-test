@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.exam.hugoapptest.base.BaseBottomSheet
 import com.exam.hugoapptest.databinding.FragmentSheetRegisterNewAccesBinding
 import com.exam.hugoapptest.flow.home.config.RegisterConfig
@@ -12,7 +14,7 @@ import com.exam.hugoapptest.flow.home.viewModel.RegisterViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class RegisterNewAccessFragmentSheet: BaseBottomSheet() {
+class RegisterNewAccessFragmentSheet : BaseBottomSheet() {
 
     @Inject
     lateinit var viewModel: RegisterViewModel
@@ -48,6 +50,13 @@ class RegisterNewAccessFragmentSheet: BaseBottomSheet() {
         super.onActivityCreated(savedInstanceState)
         setStrings()
         initListener()
+        bindViewModel()
+    }
+
+    private fun bindViewModel() {
+        viewModel.getShowMessageText().observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun setStrings() {
@@ -58,7 +67,9 @@ class RegisterNewAccessFragmentSheet: BaseBottomSheet() {
     }
 
     private fun initListener() {
-        binding.buttonRegister.setOnClickListener{ }
+        binding.buttonRegister.setOnClickListener {
+
+        }
     }
 
     companion object {
